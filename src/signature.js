@@ -15,7 +15,7 @@ angular.module('signature').directive('signaturePad', ['$interval', '$timeout', 
     return {
       restrict: 'EA',
       replace: true,
-      template: '<div class="signature" style="width: 100%; max-width:{{width}}px; height: 100%; max-height:{{height}}px;"><canvas style="display: block; margin: 0 auto;" ng-mouseup="onMouseup()" ng-mousedown="notifyDrawing({ drawing: true })"></canvas></div>',
+      template: '<div class="signature" style="width: 100%; max-width:{{width}}px; height: 100%; max-height:{{height}}px;"><canvas style="display: block; margin: 0 auto;" ng-mouseleave="onMouseup()" ng-mouseup="onMouseup()" ng-mousedown="notifyDrawing({ drawing: true })"></canvas></div>',
       scope: {
         accept: '=?',
         clear: '=?',
