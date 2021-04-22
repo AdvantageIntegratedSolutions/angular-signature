@@ -23,6 +23,7 @@ angular.module('signature').directive('signaturePad', ['$interval', '$timeout', 
         dataurl: '=?',
         height: '@',
         width: '@',
+        color: '@',
         notifyDrawing: '&onDrawing',
       },
       controller: [
@@ -75,11 +76,16 @@ angular.module('signature').directive('signaturePad', ['$interval', '$timeout', 
 
         var width = parseInt(scope.width, 10);
         var height = parseInt(scope.height, 10);
+        var penWidth = Math.ceil(width/300);
 
         canvas.width = width;
         canvas.height = height;
-
-        scope.signaturePad = new SignaturePad(canvas);
+        
+        scope.signaturePad = new SignaturePad(canvas, {
+            minWidth:  Math.ceil(penWidth*0.2),
+            maxWidth: penWidth,
+            penColor: scope.color || 'black'
+        });
 
         scope.setDataUrl = function(dataUrl) {
           var ratio = Math.max(window.devicePixelRatio || 1, 1);
